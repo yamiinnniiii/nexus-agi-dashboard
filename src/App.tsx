@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from './components/Header';
 import { TaskBoard } from './components/TaskBoard';
 import { CognitiveMatrix } from './components/CognitiveMatrix';
@@ -241,6 +242,9 @@ export const App: React.FC = () => {
         onClose={() => setIsSearchOpen(false)}
         onSelectAction={handleQuickAction}
       />
+
+      {/* Vercel Analytics */}
+      <Analytics />
 
     </div>
   );
