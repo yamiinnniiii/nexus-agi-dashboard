@@ -10,7 +10,7 @@ import { ProjectManager } from './components/ProjectManager';
 import { PersonalMemory } from './components/PersonalMemory';
 
 
-import { Sparkles, Zap, Brain, Shield, Terminal, LayoutGrid, FileText, FolderKanban } from 'lucide-react';
+import { Sparkles, Zap, Brain, Shield, LayoutGrid, FileText, FolderKanban } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -230,13 +230,8 @@ export const App: React.FC = () => {
         fontSize: '0.75rem',
         color: 'var(--text-muted)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Terminal size={14} className="text-cyan-glow" />
-          <span className="font-mono">NEXUS AGI COMMAND CENTER // VOICE & ORCHESTRATOR CONNECTED</span>
-        </div>
-        <div>
-          <span>Local Host: </span>
-          <span className="font-mono" style={{ color: 'var(--cyan)' }}>http://localhost:5173</span>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+          <span className="font-mono" style={{ letterSpacing: '0.5px' }}>© 2026 Yamini. All rights reserved.</span>
         </div>
       </footer>
 
