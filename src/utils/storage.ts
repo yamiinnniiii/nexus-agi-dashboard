@@ -1,5 +1,3 @@
-// LocalStorage persistence and data models for Nexus AGI Dashboard
-
 export interface Note {
   id: string;
   title: string;
@@ -26,11 +24,61 @@ export interface MemoryItem {
   createdAt: string;
 }
 
+export interface TaskItem {
+  id: string;
+  title: string;
+  category: 'Code' | 'Research' | 'Life' | 'AGI';
+  priority: 'P0 - Critical' | 'P1 - High' | 'P2 - Normal';
+  estimatedMins: number;
+  completed: boolean;
+  agiWeight: number; // 1-100 AGI recommendation score
+}
+
 const STORAGE_KEYS = {
   NOTES: 'nexus_agi_notes',
   PROJECTS: 'nexus_agi_projects',
   MEMORIES: 'nexus_agi_memories',
+  TASKS: 'nexus_agi_tasks',
 };
+
+export const DEFAULT_TASKS: TaskItem[] = [
+  {
+    id: '1',
+    title: 'Deploy Personal AGI Dashboard to Local Server',
+    category: 'AGI',
+    priority: 'P0 - Critical',
+    estimatedMins: 25,
+    completed: false,
+    agiWeight: 98
+  },
+  {
+    id: '2',
+    title: 'Refactor Neural Audio Synthesizer (Alpha & Rain)',
+    category: 'Code',
+    priority: 'P1 - High',
+    estimatedMins: 40,
+    completed: false,
+    agiWeight: 85
+  },
+  {
+    id: '3',
+    title: 'Synthesize Weekly AI Research & LLM Benchmarks',
+    category: 'Research',
+    priority: 'P1 - High',
+    estimatedMins: 30,
+    completed: true,
+    agiWeight: 72
+  },
+  {
+    id: '4',
+    title: 'Cognitive Recovery: 15-min Meditative Walk',
+    category: 'Life',
+    priority: 'P2 - Normal',
+    estimatedMins: 15,
+    completed: false,
+    agiWeight: 65
+  }
+];
 
 // Initial Seed Data
 const DEFAULT_NOTES: Note[] = [
@@ -149,6 +197,23 @@ export const loadMemories = (): MemoryItem[] => {
 export const saveMemories = (memories: MemoryItem[]) => {
   try {
     localStorage.setItem(STORAGE_KEYS.MEMORIES, JSON.stringify(memories));
+  } catch {
+    // ignore
+  }
+};
+
+export const loadTasks = (): TaskItem[] => {
+  try {
+    const data = localStorage.getItem(STORAGE_KEYS.TASKS);
+    return data ? JSON.parse(data) : DEFAULT_TASKS;
+  } catch {
+    return DEFAULT_TASKS;
+  }
+};
+
+export const saveTasks = (tasks: TaskItem[]) => {
+  try {
+    localStorage.setItem(STORAGE_KEYS.TASKS, JSON.stringify(tasks));
   } catch {
     // ignore
   }
