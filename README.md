@@ -30,7 +30,7 @@ A futuristic personal command center built with React, TypeScript & Vite — fea
 ### Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/nexus-agi-dashboard.git
+git clone https://github.com/yamiinnniiii/nexus-agi-dashboard.git
 cd nexus-agi-dashboard
 npm install
 ```
